@@ -36,19 +36,25 @@ const myLibrary = [
     },
 ];
 
-// addBookBtn.addEventListener('click', addBookToLibrary);
-
-function Book(title, author, published, pages, notRead){
+function Book(title, author, published, pages, status){
     this.title = title;
     this.author = author;
     this.published = published;
     this.pages = pages;
-    this.notRead = notRead;
+    this.status = status;
 };
 
 function addBookToLibrary(){
-    const newBook = new Book();
-    myLibrary.push(newBook);
+    submitBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        let newBook = new Book(title.value, author.value, published.value, pages.value, status.value);
+        myLibrary.push(newBook);
+        console.log(myLibrary);
+        console.log(newBook);
+        dialog.close();
+        displayBook(myLibrary)
+    })
+
 };
 
 addBookToLibrary();
@@ -67,15 +73,7 @@ function displayBook(books){
     })
 }
 
-displayBook(myLibrary);
-
 addBookBtn.addEventListener('click', () => {
-    dialog.style.display = 'flex';
      dialog.showModal();
 });
 
-submitBtn.addEventListener('click', (e) =>{
-    e.preventDefault();
-    dialog.style.display = 'none'; //the info in the form stays 
-    dialog.close();
-})
