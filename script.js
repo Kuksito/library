@@ -5,36 +5,7 @@ const dialog = document.querySelector('[data-dialog]');
 const addBookBtn = document.querySelector('[data-btn]');
 const submitBtn = document.querySelector('[data-submit]');
 
-const myLibrary = [
-    // {
-    //     title: 'The vampire diaries',
-    //     author: 'L. J. Smith',
-    //     published: '1991',
-    //     pages: 272,
-    //     read: 'have read',
-    // },
-    // {
-    //     title: 'The Daughter of Smoke and Bone',
-    //     author: 'Laini Taylor',
-    //     published: '2011',
-    //     pages: 418,
-    //     read: `didn't read`,
-    // },
-    // {
-    //     title: 'The Poppy War',
-    //     author: 'R. F. Kuang',
-    //     published: '2018',
-    //     pages: 544,
-    //     read: 'read',
-    // },
-    // {
-    //     title: 'Babel',
-    //     author: 'R. F. Kuang',
-    //     published: '2022',
-    //     pages: 545,
-    //     read: 'read',
-    // },
-];
+const myLibrary = [];
 
 function Book(title, author, published, pages, bookStatus){
     this.title = title;
