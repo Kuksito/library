@@ -3,7 +3,7 @@ const cardContainer = document.querySelector('[data-card-container]');
 const formContainer = document.querySelector('[data-form]');
 const dialog = document.querySelector('[data-dialog]');
 const addBookBtn = document.querySelector('[data-btn]');
-const submitBtn = document.querySelector('[data-submit]');
+const closeBtn = document.querySelector('[data-close]');
 
 const myLibrary = [];
 
@@ -14,6 +14,10 @@ function Book(title, author, published, pages, bookStatus){
     this.pages = pages;
     this.bookStatus = bookStatus;
 };
+
+closeBtn.addEventListener('click', () =>{
+    dialog.close();
+})
 
 function addBookToLibrary(){
     formContainer.addEventListener('submit', (e) => {
@@ -42,7 +46,8 @@ function displayBookCard(book){
     const bookAuthor = document.createElement('p');
     const bookPublished = document.createElement('p');
     const bookPages = document.createElement('p');
-    const bookStatus = document.createElement('p');
+    const bookStatusBtn = document.createElement('button');
+    const bookStatusPara = document.createElement('div');
     card.classList.add('card');
     removeBtn.classList.add('remove-btn');
     removeBtn.setAttribute('data', 'remove');
@@ -50,18 +55,33 @@ function displayBookCard(book){
     bookAuthor.classList.add('book-info');
     bookPublished.classList.add('book-info');
     bookPages.classList.add('book-info');
-    bookStatus.classList.add('book-info');
+    bookStatusBtn.classList.add('toggle');
+    bookStatusPara.classList.add('book-info');
     bookTitle.textContent = `Title: ${book.title}`;
     bookAuthor.textContent = `Author: ${book.author}`;
     bookPublished.textContent = `Published: ${book.published}`;
-    bookPages.textContent = `Pages: ${book.pages}"`;
-    bookStatus.textContent = `Have read: ${book.bookStatus}`;
-    card.append(bookTitle, bookAuthor, bookPublished, bookPages, bookStatus);
+    bookPages.textContent = `Pages: ${book.pages}`;
+    bookStatusPara.textContent = 'Have read: ';
+    bookStatusBtn.textContent = `${book.bookStatus}`;
+    bookStatusPara.append(bookStatusBtn);
+    card.append(bookTitle, bookAuthor, bookPublished, bookPages, bookStatusPara);
     card.append(removeBtn);
-    cardContainer.append(card); 
+    cardContainer.append(card);  
+
     removeBtn.addEventListener('click', () =>{
         card.remove();
-    })
+    });
+
+    if(bookStatusBtn.textContent === 'no'){
+        bookStatusBtn.style.cursor = 'pointer';
+        bookStatusBtn.addEventListener('click', () => {
+            bookStatusBtn.textContent = 'yes';
+            bookStatusBtn.style.color = 'green';
+            bookStatusBtn.style.cursor = 'default';
+        });
+    } else {
+        bookStatusBtn.style.color = 'green';
+    };
 };
 
 addBookBtn.addEventListener('click', () => {
