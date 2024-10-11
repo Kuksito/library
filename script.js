@@ -7,6 +7,12 @@ const closeBtn = document.querySelector('[data-close]');
 
 const myLibrary = [];
 
+class Book{
+    constructor(){
+        this.title = title;
+    }
+}
+
 function Book(title, author, published, pages, bookStatus){
     this.title = title;
     this.author = author;
